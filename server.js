@@ -14,9 +14,15 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-const PORT = 3000;
-const DB_URL =
-  'mongodb+srv://netninja:test1234@cluster0.rmixe.mongodb.net/node-tuts?retryWrites=true&w=majority';
+const dotenv = require('dotenv');
+dotenv.config();
+
+// const PORT = 3000;
+// const DB_URL =
+//   'mongodb+srv://netninja:test1234@cluster0.rmixe.mongodb.net/node-tuts?retryWrites=true&w=majority';
+
+const PORT = process.env.PORT;
+const DB_URL = process.env.DB_URL;
 
 // ------
 // Models
