@@ -74,6 +74,15 @@ db.once('open', async () => {
 // Routes
 // ======
 
+// Root
+app.get('/', (req, res) => {
+  try {
+    res.json('Success: Backend Running...');
+  } catch (error) {
+    res.status(500).json({ message: error.message }); // Status 500 Server Error
+  }
+});
+
 // Page of Users
 app.get('/users', paginatedResults(User), (req, res) => {
   try {
