@@ -36,14 +36,7 @@ const Restaurant = require('./models/restaurants');
 // -------------------
 // Connect to database
 // -------------------
-
-// mongoose.connect(
-//   'mongodb+srv://netninja:test1234@cluster0.rmixe.mongodb.net/node-tuts?retryWrites=true&w=majority',
-//   { useNewUrlParser: true, useUnifiedTopology: true }
-// );
-
 mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
-
 const db = mongoose.connection;
 console.log('MongoDB Connection Active');
 
