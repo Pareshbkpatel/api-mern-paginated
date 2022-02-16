@@ -8,6 +8,7 @@
       2021-09-14: Reviewed Code 
       2022-01-03: Re-Visited  
       2022-01-31: Prepared fort deployment to Heroku  
+      2022-02-16: Added cors support  
    ---------------------------------------------------------------------*/
 
 const express = require('express');
@@ -17,9 +18,8 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
 
-// const PORT = 3000;
-// const DB_URL =
-//   'mongodb+srv://netninja:test1234@cluster0.rmixe.mongodb.net/node-tuts?retryWrites=true&w=majority';
+const cors = require('cors');
+app.use(cors());
 
 const PORT = process.env.PORT;
 const DB_URL = process.env.DB_URL;
