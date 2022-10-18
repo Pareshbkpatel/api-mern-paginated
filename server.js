@@ -9,6 +9,8 @@
       2022-01-03: Re-Visited  
       2022-01-31: Prepared fort deployment to Heroku  
       2022-02-16: Added cors support  
+      2022-10-12: Re-visited  
+      2022-10-17: Added contacts model  
    ---------------------------------------------------------------------*/
 
 const express = require('express');
@@ -32,6 +34,7 @@ const Blog = require('./models/blogs');
 const Surname = require('./models/surnames');
 const Person = require('./models/people');
 const Restaurant = require('./models/restaurants');
+const Contact = require('./models/contacts');
 
 // -------------------
 // Connect to database
@@ -105,6 +108,11 @@ app.get('/restaurants', paginatedResults(Restaurant), (req, res) => {
   res.json(res.paginatedResults);
 });
 
+// Page of Contacts
+app.get('/contacts', paginatedResults(Contact), (req, res) => {
+  res.json(res.paginatedResults);
+});
+
 // ===================================================
 // Middleware function (always takes:  req, res, next)
 // ===================================================
@@ -113,7 +121,7 @@ function paginatedResults(model) {
     //
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
-    const startIndex = (page - 1) * limit;
+    const startIndex = (page - 1) * limit; // page 1 @ 0
     const endIndex = page * limit;
     const results = {};
 

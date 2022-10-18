@@ -15,4 +15,8 @@ GET http://localhost:3000/people?page=1900&limit=10
 
 ###
 
-GET http://localhost:3000/restaurants?page=2&limit=30
+GET http://localhost:3000/restaurants?page=2&limit=900
+
+###
+
+GET http://localhost:3000/contacts?page=1&limit=50
