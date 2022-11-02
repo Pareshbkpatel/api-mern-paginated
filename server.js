@@ -7,20 +7,21 @@
       2021-07-15: Reviewed Code 
       2021-09-14: Reviewed Code 
       2022-01-03: Re-Visited  
-      2022-01-31: Prepared fort deployment to Heroku  
+      2022-01-31: Prepared for deployment to Heroku  
       2022-02-16: Added cors support  
       2022-10-12: Re-visited  
       2022-10-17: Added contacts model  
+      2022-11-02: added "type": "Module" to package.json  
    ---------------------------------------------------------------------*/
 
-const express = require('express');
+import express from 'express';
 const app = express();
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 dotenv.config();
 
-const cors = require('cors');
+import cors from 'cors';
 app.use(cors());
 
 const PORT = process.env.PORT;
@@ -29,12 +30,12 @@ const DB_URL = process.env.DB_URL;
 // ------
 // Models
 // ------
-const User = require('./models/users');
-const Blog = require('./models/blogs');
-const Surname = require('./models/surnames');
-const Person = require('./models/people');
-const Restaurant = require('./models/restaurants');
-const Contact = require('./models/contacts');
+import User from './models/users.js';
+import Blog from './models/blogs.js';
+import Surname from './models/surnames.js';
+import Person from './models/people.js';
+import Restaurant from './models/restaurants.js';
+import Contact from './models/contacts.js';
 
 // -------------------
 // Connect to database

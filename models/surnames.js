@@ -1,14 +1,16 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const surnameSchema = new mongoose.Schema({
-    snaNumber : {
-        type : String,
-        required: true
-    },
-    snaName : {
-        type : String,
-        required: true
-    }
-})
+  snaNumber: {
+    type: String,
+    required: true
+  },
+  snaName: {
+    type: String,
+    required: true
+  }
+});
 
-module.exports = mongoose.model('Surname', surnameSchema);
+const Surname = mongoose.model('Surname', surnameSchema);
+
+export default Surname;
