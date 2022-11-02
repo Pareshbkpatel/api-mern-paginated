@@ -15,15 +15,13 @@
    ---------------------------------------------------------------------*/
 
 import express from 'express';
-const app = express();
 import mongoose from 'mongoose';
-
 import dotenv from 'dotenv';
-dotenv.config();
-
 import cors from 'cors';
-app.use(cors());
 
+const app = express();
+dotenv.config();
+app.use(cors());
 const PORT = process.env.PORT;
 const DB_URL = process.env.DB_URL;
 
