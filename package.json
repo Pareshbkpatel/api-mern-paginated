@@ -1,24 +1,26 @@
 {
   "name": "api-paginated-kyle",
   "version": "1.0.0",
-  "description": "",
+  "description": "Restful API (Kyle)",
   "main": "server.js",
   "type": "module",
   "scripts": {
     "devStart": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "REST",
+    "API"
+  ],
   "author": "Kyle Cook",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongoose": "^5.13.15",
-    "node-fetch": "^2.6.7"
+    "mongoose": "^5.13.15"
   },
   "devDependencies": {
+    "dotenv": "^16.0.3",
     "nodemon": "^2.0.20"
   }
 }
