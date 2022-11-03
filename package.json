@@ -4,6 +4,9 @@
   "description": "Restful API (Kyle)",
   "main": "server.js",
   "type": "module",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "devStart": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
