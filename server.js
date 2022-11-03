@@ -15,7 +15,6 @@
       2022-11-02: added "type": "Module" to package.json  
 ---------------------------------------------------------------------
 */
-
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -71,14 +70,14 @@ db.once('open', async () => {
 // Routes
 // ======
 
-// Root
-app.get('/', (req, res) => {
-  try {
-    res.json('Success: Backend Running...');
-  } catch (error) {
-    res.status(500).json({ message: error.message }); // Status 500 Server Error
-  }
-});
+// // Root
+// app.get('/', (req, res) => {
+//   try {
+//     res.json('Success: Backend Running...');
+//   } catch (error) {
+//     res.status(500).json({ message: error.message }); // Status 500 Server Error
+//   }
+// });
 
 // Page of Users
 app.get('/users', paginatedResults(User), (req, res) => {
