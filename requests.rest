@@ -1,4 +1,8 @@
 
+GET http://localhost:3000
+
+###
+
 GET http://localhost:3000/blogs?page=2&limit=10
 
 ###

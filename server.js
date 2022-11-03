@@ -1,4 +1,5 @@
-/* -----------------------------------------------------------------------
+/*
+ -----------------------------------------------------------------------
             File: server.js
          Purpose: Create A Paginated API With Node.js - Complete Tutorial 
           Mentor: Kyle https://www.youtube.com/watch?v=ZX3qt0UWifc 
@@ -12,7 +13,8 @@
       2022-10-12: Re-visited  
       2022-10-17: Added contacts model  
       2022-11-02: added "type": "Module" to package.json  
-   ---------------------------------------------------------------------*/
+---------------------------------------------------------------------
+*/
 
 import express from 'express';
 import mongoose from 'mongoose';
@@ -22,8 +24,8 @@ import cors from 'cors';
 const app = express();
 dotenv.config();
 app.use(cors());
-const PORT = process.env.PORT;
-const DB_URL = process.env.DB_URL;
+const port = process.env.PORT;
+const dbURL = process.env.DB_URL;
 
 // ------
 // Models
@@ -38,7 +40,7 @@ import Contact from './models/contacts.js';
 // -------------------
 // Connect to database
 // -------------------
-mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 console.log('MongoDB Connection Active');
 
@@ -158,5 +160,6 @@ function paginatedResults(model) {
 // =========================
 // Listen on Specified Port#
 // =========================
-app.listen(PORT);
-console.log(`Server Listening on Port# ${PORT}`);
+app.listen(port, () =>
+  console.log(`Server is running on http://localhost:${port}`)
+);
