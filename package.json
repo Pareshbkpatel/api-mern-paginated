@@ -1,7 +1,7 @@
 {
   "name": "api-paginated-kyle",
   "version": "1.0.0",
-  "description": "Restful API (Kyle)",
+  "description": "Restful API - Paginated (Kyle)",
   "main": "server.js",
   "type": "module",
   "engines": {
