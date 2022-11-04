@@ -3,7 +3,7 @@ GET http://localhost:8800
 
 ###
 
-GET http://localhost:8800/blogs?page=2&limit=10
+GET http://localhost:8800/blogs?page=1&limit=10
 
 ###
 
@@ -11,11 +11,11 @@ GET http://localhost:8800/users?page=1&limit=5
 
 ###
 
-GET http://localhost:8800/surnames?page=1640&limit=10
+GET http://localhost:8800/surnames?page=1&limit=10
 
 ###
 
-GET http://localhost:8800/people?page=1900&limit=10
+GET http://localhost:8800/people?page=1&limit=10
 
 ###
 
