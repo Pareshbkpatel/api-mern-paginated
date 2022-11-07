@@ -16,7 +16,7 @@
     "REST",
     "API"
   ],
-  "author": "Kyle Cook kc",
+  "author": "Kyle Cook",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",

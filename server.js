@@ -1,6 +1,7 @@
 /*-----------------------------------------------------------------------
             File: server.js
          Purpose: Create A Paginated API With Node.js - Complete Tutorial 
+          Author: Paresh B. Patel
           Mentor: Kyle https://www.youtube.com/watch?v=ZX3qt0UWifc 
       2021-07-05: Created
       2021-07-07: Added support for People & Restuarants collections
@@ -12,6 +13,7 @@
       2022-10-12: Re-visited  
       2022-10-17: Added contacts model  
       2022-11-02: added "type": "Module" to package.json  
+      2022-11-04: paginatedRouter   
 -----------------------------------------------------------------------*/
 import express from 'express';
 import mongoose from 'mongoose';
@@ -23,14 +25,14 @@ import User from './models/userModel.js'; // For Data Generation
 import paginatedRouter from './routes/paginatedRouter.js';
 
 const app = express();
-dotenv.config();
+dotenv.config({ path: '.env' });
 app.use(cors());
 
 // ------
 // Routes
 // ------
 
-// Root
+// Root Route
 app.get('/', (req, res) => {
   try {
     res.json('Success: Backend Running...');
@@ -39,21 +41,15 @@ app.get('/', (req, res) => {
   }
 });
 
-app.use('/', paginatedRouter); // Page of Users
-app.use('/', paginatedRouter);
-app.use('/', paginatedRouter);
-app.use('/', paginatedRouter);
-app.use('/', paginatedRouter);
-app.use('/', paginatedRouter);
+app.use('/', paginatedRouter); 
 
 // -------------------
-// Connect to database
+// Connect to Database
 // -------------------
-const port = process.env.PORT;
 const dbURL = process.env.DB_URL;
 mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
-console.log('MongoDB Connection Active');
+console.log('Database Connection Active');
 
 // -----------------------------------------------------
 // Execute this once to create data if it does not exist
@@ -76,11 +72,11 @@ db.once('open', async () => {
     User.create({ name: 'User 12' })
   ]).then(() => console.log('Added 12 Users...'));
 });
-// -----------------------------------------------------
 
-// -------------------------
-// Listen on Specified Port#
-// -------------------------
+// ------------
+// Start Server
+// ------------
+const port = process.env.PORT || 8080;
 app.listen(port, () =>
   console.log(`Server is running on http://localhost:${port}`)
 );
