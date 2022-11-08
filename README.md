@@ -1,3 +1,3 @@
-# api-paginated-kyle
+# api-mern-paginated
 
 # JS Modules Implemented

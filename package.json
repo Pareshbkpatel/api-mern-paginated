@@ -1,7 +1,7 @@
 {
-  "name": "api-paginated-kyle",
+  "name": "api-paginated",
   "version": "1.0.0",
-  "description": "Restful API - Paginated (Kyle)",
+  "description": "Restful API - (Paginated)",
   "main": "server.js",
   "type": "module",
   "engines": {
@@ -16,7 +16,7 @@
     "REST",
     "API"
   ],
-  "author": "Kyle Cook",
+  "author": "Paresh B. Patel",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",

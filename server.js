@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
   }
 });
 
-app.use('/', paginatedRouter); 
+app.use('/', paginatedRouter);
 
 // -------------------
 // Connect to Database
