@@ -68,7 +68,8 @@ router.get('/restaurants', paginatedResults(Restaurant), (req, res) => {
    ---------------------------------------------------*/
 function paginatedResults(model) {
   return async (req, res, next) => {
-    //
+    const results = {};
+
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
 
@@ -84,24 +85,6 @@ function paginatedResults(model) {
       pageSize: limit
     };
 
-    const results = {};
-
-    // Avoid Page Overflow
-    if (endIndex < (await model.countDocuments().exec())) {
-      results.next = {
-        page: page + 1, // Next page
-        limit: limit // Page-Size
-      };
-    }
-
-    // Avoid Page Underflow
-    if (startIndex > 0) {
-      results.previous = {
-        page: page - 1, // Previous page
-        limit: limit // Page-Size
-      };
-    }
-
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Append Page info to oMetaData
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -111,7 +94,7 @@ function paginatedResults(model) {
       Object.assign(oMetaData, { prevPage: page - 1 });
     }
 
-    // nextPage (Avoid Page Overflow)
+    // nextPage - (Avoid Page Overflow)
     if (endIndex < documentCount) {
       Object.assign(oMetaData, { nextPage: page + 1 });
     }
