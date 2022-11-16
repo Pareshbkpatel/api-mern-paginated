@@ -74,15 +74,17 @@ function paginatedResults(model) {
 
     const startIndex = (page - 1) * limit; // page 1 @ 0
     const endIndex = parseInt(page * limit);
+
+    const documentCount = await model.countDocuments().exec();
+    const pageCount = Math.ceil(documentCount / limit);
+
+    const oMetaData = {
+      documentCount: documentCount,
+      pageCount: pageCount,
+      pageSize: limit
+    };
+
     const results = {};
-
-    // Document Count
-    const docCount = await model.countDocuments().exec();
-    results.documentCount = docCount;
-
-    // Page Count
-    const totalPages = Math.ceil(docCount / limit);
-    results.pageCount = totalPages;
 
     // Avoid Page Overflow
     if (endIndex < (await model.countDocuments().exec())) {
@@ -100,7 +102,26 @@ function paginatedResults(model) {
       };
     }
 
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Append Page info to oMetaData
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    // Append prevPage - (Avoid Page Underflow)
+    if (startIndex > 0) {
+      Object.assign(oMetaData, { prevPage: page - 1 });
+    }
+
+    // nextPage (Avoid Page Overflow)
+    if (endIndex < documentCount) {
+      Object.assign(oMetaData, { nextPage: page + 1 });
+    }
+
+    // Meta-Data Section
+    // ~~~~~~~~~~~~~~~~~
+    results.metaData = oMetaData;
+
     // Results Section
+    // ~~~~~~~~~~~~~~~
     try {
       results.results = await model
         .find()
