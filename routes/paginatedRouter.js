@@ -71,15 +71,24 @@ function paginatedResults(model) {
     //
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
+
     const startIndex = (page - 1) * limit; // page 1 @ 0
-    const endIndex = page * limit;
+    const endIndex = parseInt(page * limit);
     const results = {};
 
-    //  Avoid Page Overflow
+    // Document Count
+    const docCount = await model.countDocuments().exec();
+    results.documentCount = docCount;
+
+    // Page Count
+    const totalPages = Math.ceil(docCount / limit);
+    results.pageCount = totalPages;
+
+    // Avoid Page Overflow
     if (endIndex < (await model.countDocuments().exec())) {
       results.next = {
         page: page + 1, // Next page
-        limit: limit
+        limit: limit // Page-Size
       };
     }
 
@@ -87,7 +96,7 @@ function paginatedResults(model) {
     if (startIndex > 0) {
       results.previous = {
         page: page - 1, // Previous page
-        limit: limit
+        limit: limit // Page-Size
       };
     }
 
