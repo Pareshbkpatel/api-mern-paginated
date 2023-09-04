@@ -35,7 +35,7 @@ app.use(cors());
 // Root Route
 app.get('/', (req, res) => {
   try {
-    res.json('Success: Backend Running...');
+    res.json('Success: api-paginated running...');
   } catch (error) {
     res.status(500).json({ message: error.message }); // Status 500 Server Error
   }
@@ -78,5 +78,5 @@ db.once('open', async () => {
 // ------------
 const port = process.env.PORT || 8080;
 app.listen(port, () =>
-  console.log(`Server is running on http://localhost:${port}`)
+  console.log(`Server is running on http://localhost:${port}...`)
 );
