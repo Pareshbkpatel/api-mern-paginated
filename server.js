@@ -35,7 +35,7 @@ app.use(cors());
 // Root Route
 app.get('/', (req, res) => {
   try {
-    res.json('Success: api-paginated running...');
+    res.json('Success: api-mern-paginated running...');
   } catch (error) {
     res.status(500).json({ message: error.message }); // Status 500 Server Error
   }

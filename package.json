@@ -1,5 +1,5 @@
 {
-  "name": "api-paginated",
+  "name": "api-mern-paginated",
   "version": "1.0.0",
   "description": "Restful API - (Paginated)",
   "main": "server.js",
