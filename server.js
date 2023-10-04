@@ -41,6 +41,7 @@ app.get('/', (req, res) => {
   }
 });
 
+// Other Routes
 app.use('/', paginatedRouter);
 
 // -------------------
