@@ -20,13 +20,14 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-import User from './models/userModel.js'; // For Data Generation
-
-import paginatedRouter from './routes/paginatedRouter.js';
+import paginatedRoutes from './routes/paginatedRoutes.js';
 
 const app = express();
 dotenv.config({ path: '.env' });
 app.use(cors());
+
+const port = process.env.PORT || 8080;
+const dbURL = process.env.DB_URL;
 
 // ------
 // Routes
@@ -42,42 +43,24 @@ app.get('/', (req, res) => {
 });
 
 // Other Routes
-app.use('/', paginatedRouter);
+app.use('/', paginatedRoutes);
 
 // -------------------
 // Connect to Database
 // -------------------
-const dbURL = process.env.DB_URL;
+let dateTime = new Date().toLocaleString('en-GB', { timeZone: 'UTC' });
+///let dateTime = new Date().toLocaleString({ timeZone: 'UTC' });
+
+mongoose.set('strictQuery', true); // prepare for Mongoose 7
 mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
+db.on('error', () => console.error(error));
+db.once('open', () => console.log(`[${dateTime}] - Database Connected...`));
 console.log('Database Connection Active');
-
-// -----------------------------------------------------
-// Execute this once to create data if it does not exist
-// -----------------------------------------------------
-db.once('open', async () => {
-  if ((await User.countDocuments().exec()) > 0) return;
-
-  Promise.all([
-    User.create({ name: 'User 1' }),
-    User.create({ name: 'User 2' }),
-    User.create({ name: 'User 3' }),
-    User.create({ name: 'User 4' }),
-    User.create({ name: 'User 5' }),
-    User.create({ name: 'User 6' }),
-    User.create({ name: 'User 7' }),
-    User.create({ name: 'User 8' }),
-    User.create({ name: 'User 9' }),
-    User.create({ name: 'User 10' }),
-    User.create({ name: 'User 11' }),
-    User.create({ name: 'User 12' })
-  ]).then(() => console.log('Added 12 Users...'));
-});
 
 // ------------
 // Start Server
 // ------------
-const port = process.env.PORT || 8080;
-app.listen(port, () =>
-  console.log(`Server is running on http://localhost:${port}...`)
-);
+app.listen(port, () => {
+  console.log(`[${dateTime}] - Server is listening on Port: ${port}...`);
+});

@@ -1,11 +1,11 @@
 import express from 'express';
 
-import User from '../models/userModel.js';
-import Blog from '../models/blogModel.js';
-import Surname from '../models/surnameModel.js';
-import Person from '../models/peopleModel.js';
-import Contact from '../models/contactModel.js';
-import Restaurant from '../models/restaurantModel.js';
+import User from '../models/User.js.js';
+import Blog from '../models/Blog.js';
+import Surname from '../models/Surname.js';
+import Person from '../models/People.js';
+import Contact from '../models/Contact.js';
+import Restaurant from '../models/Restaurant.js';
 
 const router = express.Router();
 
