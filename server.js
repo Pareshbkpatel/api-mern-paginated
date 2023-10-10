@@ -51,7 +51,7 @@ app.use('/', paginatedRoutes);
 let dateTime = new Date().toLocaleString('en-GB', { timeZone: 'UTC' });
 ///let dateTime = new Date().toLocaleString({ timeZone: 'UTC' });
 
-mongoose.set('strictQuery', true); // prepare for Mongoose 7
+///mongoose.set('strictQuery', true); // prepare for Mongoose 7 - We are using v7.6.0
 mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', () => console.error(error));
