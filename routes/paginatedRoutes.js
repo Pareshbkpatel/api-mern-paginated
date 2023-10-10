@@ -63,10 +63,11 @@ router.get('/restaurants', paginatedResults(Restaurant), (req, res) => {
   }
 });
 
-/* ---------------------------------------------------
-   Middleware function (always takes:  req, res, next)
-   ---------------------------------------------------*/
+/* ---------------------------------------------------------
+   Middleware returns a function that takes (req, res, next)
+   ---------------------------------------------------------*/
 function paginatedResults(model) {
+  // return a function that acts as m/w, it takes (req, res, next)
   return async (req, res, next) => {
     const results = {};
 
@@ -109,12 +110,12 @@ function paginatedResults(model) {
       results.results = await model
         .find()
         .limit(limit)
-        .skip(startIndex)
+        .skip(startIndex) // skip to start index
         .exec();
       res.paginatedResults = results;
       next();
-    } catch (e) {
-      res.status(500).json({ message: e.message });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
     }
   };
 }

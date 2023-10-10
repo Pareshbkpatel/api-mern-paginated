@@ -14,6 +14,7 @@
       2022-10-17: Added contacts model  
       2022-11-02: added "type": "Module" to package.json  
       2022-11-04: paginatedRouter   
+      2023-10-10: revisited code    
 -----------------------------------------------------------------------*/
 import express from 'express';
 import mongoose from 'mongoose';
@@ -36,7 +37,7 @@ const dbURL = process.env.DB_URL;
 // Root Route
 app.get('/', (req, res) => {
   try {
-    res.json('Success: api-mern-paginated running...');
+    res.json('Success: api-mern-paginated running... v:[2023-10-10]');
   } catch (error) {
     res.status(500).json({ message: error.message }); // Status 500 Server Error
   }
